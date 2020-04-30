@@ -38,6 +38,9 @@ def get_input_args():
     Returns:
      parse_args() -data structure that stores the command line arguments object  
     """
-    # Replace None with parser.parse_args() parsed argument collection that 
-    # you created with this function 
-    return None
+    parser = argparse.ArgumentParser(description="Runs classification over the (1)directory using the (2)architecture, \
+                                                                    and referencing (3)dogfile that the user provides.")
+    parser.add_argument("--dir", type=str,  default="pet_images", help="directory for the images to be classified")
+    parser.add_argument("--arch", type=str, default="vgg", help="architecture to be used on the images. Refer to PyTorch docs")
+    parser.add_argument("--dogfile", type=str, default="dognames.txt", help=".txt file with dog breeds and names.")
+    return parser.parse_args()
