@@ -9,6 +9,7 @@
 #          the image's filename. This function inputs: 
 #           - The Image Folder as image_dir within get_pet_labels function and 
 #             as in_arg.dir for the function call within the main function. 
+#
 #          This function creates and returns the results dictionary as results_dic
 #          within get_pet_labels function and as results within main. 
 #          The results_dic dictionary has a 'key' that's the image filename and
@@ -42,4 +43,5 @@ def get_pet_labels(image_dir):
     """
     # Replace None with the results_dic dictionary that you created with this
     # function
-    return None
+    results_dic = {filename: [" ".join(filename.lower().split('_')[:-1])] for filename in image_dir}
+    return results_dic
