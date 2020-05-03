@@ -43,5 +43,5 @@ def get_pet_labels(image_dir):
     """
     # Replace None with the results_dic dictionary that you created with this
     # function
-    results_dic = {filename: [" ".join(filename.lower().split('_')[:-1])] for filename in image_dir}
+    results_dic = {filename: [" ".join(filename.lower().split('_')[:-1])] for filename in listdir(image_dir)}
     return results_dic
