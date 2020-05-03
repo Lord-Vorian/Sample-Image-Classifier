@@ -6,7 +6,7 @@
 # DATE CREATED: 4/30/2020
 # REVISED DATE: 
 # PURPOSE: Create a function adjust_results4_isadog that adjusts the results 
-#          dictionary to indicate whether or not the pet image label is of-a-dog, 
+#          dictionary to indicate whether or not the pet image label is of-a-dog,
 #          and to indicate whether or not the classifier image label is of-a-dog.
 #          All dog labels from both the pet images and the classifier function
 #          will be found in the dognames.txt file. We recommend reading all the
@@ -66,5 +66,11 @@ def adjust_results4_isadog(results_dic, dogfile):
                maltese) (string - indicates text file's filename)
     Returns:
            None - results_dic is mutable data type so no return needed.
-    """           
-    None
+    """
+    dogs = []
+    with open(dogfile) as file:
+        dogs.extend(line.rstrip('\n') for line in file.readlines())
+    file.close()
+    for label_list in results_dic.values():
+        label_list.extend([1 if label_list[0] in dogs else 0,
+                           1 if label_list[1] in dogs else 0])
