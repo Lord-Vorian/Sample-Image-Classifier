@@ -31,7 +31,7 @@
 #       Notice that this function doesn't to return anything because it  
 #       prints a summary of the results using results_dic and results_stats_dic
 # 
-def print_results(results_dic, results_stats_dic, model, 
+def print_results(results_dic, results_stats_dic, model,
                   print_incorrect_dogs = False, print_incorrect_breed = False):
     """
     Prints summary results on the classification and then prints incorrectly 
@@ -62,5 +62,28 @@ def print_results(results_dic, results_stats_dic, model,
     Returns:
            None - simply printing results.
     """    
-    None
-                
+    print(
+        ('\nmodel used for this test:\t' + model + '\n'
+            'number of images:\t{n_images}\n'
+            'number of dog images:\t{n_dogs_img}\n'
+            'number of NON-dog images:\t{n_notdogs_img}\n'
+            'number of matches between pet & classifier labels:\t{n_match}\n'
+            'number of correctly classified dog images:\t{n_correct_dogs}\n'
+            'number of correctly classified NON-dog images:\t{n_correct_notdogs}\n'
+            'number of correctly classified dog breeds:\t{n_correct_breed}\n'
+            'percentage of correct matches:\t{pct_match}%\n'
+            'percentage of correctly classified dogs:\t{pct_correct_dogs}%\n'
+            'percentage of correctly classified dog breeds:\t{pct_correct_breed}%\n'
+            'percentage of correctly classified NON-dogs:\t{pct_correct_notdogs}%\n'
+         ).format(**results_stats_dic).expandtabs(51)
+    )
+
+    if print_incorrect_dogs:
+        print("\nDog images classified as non-dogs:")
+        for incorrect in [item for item in results_dic.values() if item[3] and not item[4]]:
+            print(list(results_dic.keys())[list(results_dic.values()).index(incorrect)])
+
+    if print_incorrect_breed:
+        print("\nDog images classified as wrong breed:")
+        for incorrect in [item for item in results_dic.values() if not item[2] and item[3] and item[4]]:
+            print(list(results_dic.keys())[list(results_dic.values()).index(incorrect)])
