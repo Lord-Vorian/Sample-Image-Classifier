@@ -79,8 +79,8 @@ def print_results(results_dic, results_stats_dic, model,
     )
 
     if print_incorrect_dogs:
-        print("\nDog images classified as non-dogs: ")
-        for incorrect in [item for item in results_dic.values() if item[3] and not item[4]]:
+        print("\nDog images classified as non-dogs, or non-dogs classified as dogs: ")
+        for incorrect in [item for item in results_dic.values() if item[3] and not item[4] or not item[3] and item[4]]:
             print(list(results_dic.keys())[list(results_dic.values()).index(incorrect)], "\t was classified as: "+incorrect[1])
 
     if print_incorrect_breed:
