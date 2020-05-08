@@ -78,12 +78,11 @@ def calculates_results_stats(results_dic):
         "n_correct_notdogs": len([thing for thing in dog_list if not thing[3] and not thing[4]]),
         "n_correct_breed": len([breed for breed in dog_list if breed[2] and breed[3]])
     }
-
     results_stats_dic.update({  # for self-reference
-        "pct_match": round(results_stats_dic['n_match'] / results_stats_dic['n_images']*100, 1),
-        "pct_correct_dogs": round(results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img']*100, 1),
-        "pct_correct_breed": round(results_stats_dic['n_correct_breed'] / results_stats_dic['n_correct_dogs']*100, 1),
-        "pct_correct_notdogs": round(results_stats_dic["n_correct_notdogs"] / results_stats_dic["n_notdogs_img"]*100, 1)
+        "pct_match": round(results_stats_dic['n_match'] / results_stats_dic['n_images']*100, 1) if results_stats_dic['n_images'] else 0,
+        "pct_correct_dogs": round(results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img']*100, 1) if results_stats_dic['n_dogs_img'] else 0,
+        "pct_correct_breed": round(results_stats_dic['n_correct_breed'] / results_stats_dic['n_correct_dogs']*100, 1) if results_stats_dic['n_correct_dogs'] else 0,
+        "pct_correct_notdogs": round(results_stats_dic["n_correct_notdogs"] / results_stats_dic["n_notdogs_img"]*100, 1) if results_stats_dic["n_notdogs_img"] else 0
     })
 
     return results_stats_dic
