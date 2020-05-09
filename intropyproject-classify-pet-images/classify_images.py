@@ -67,5 +67,5 @@ def classify_images(images_dir, results_dic, model):
            None - results_dic is mutable data type so no return needed.         
     """
     for filename, label_list in results_dic.items():
-        guess = classifier(path.join(images_dir, filename), model).lower()
+        guess = classifier(path.join(images_dir, filename), model).lower().strip()
         label_list.extend([guess, 1 if label_list[0] in guess.split(', ') else 0])
